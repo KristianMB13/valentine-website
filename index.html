@@ -37,7 +37,11 @@
             display: flex;
             justify-content: center;
             margin-top: 20px;
-            gap: 20px; /* Mellomrom mellom knappene */
+            gap: 20px;
+        }
+
+        .swap-buttons {
+            flex-direction: row-reverse;
         }
 
         #yesButton, #no {
@@ -88,7 +92,9 @@
                     <h1>Jeg elsker deg, bebe ❤️</h1>
                     <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
                     <br><br>
-                    <button onclick="location.reload()">Start på nytt</button>
+                    <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
+                        Start på nytt
+                    </button>
                 `;
         });
 
@@ -106,7 +112,7 @@
                 swapButtons: false
             },
             {
-                text: "Er du seriøs nå eller?",
+                text: "Er du seriøs nå eller? helt sikker?",
                 image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true",
                 large: true,
                 swapButtons: true
@@ -131,50 +137,51 @@
                 }
 
                 if (steps[step].swapButtons) {
-                    buttonContainer.innerHTML = `
-                            <button id="no">Nei</button>
-                            <button id="yesButton">Ja</button>
-                        `;
+                    buttonContainer.classList.add("swap-buttons");
+                    yesButton.style.backgroundColor = "#ef476f";
+                    noButton.style.backgroundColor = "#06d6a0";
                 } else {
-                    buttonContainer.innerHTML = `
-                            <button id="yesButton">Ja</button>
-                            <button id="no">Nei</button>
-                        `;
+                    buttonContainer.classList.remove("swap-buttons");
+                    yesButton.style.backgroundColor = "#06d6a0";
+                    noButton.style.backgroundColor = "#ef476f";
                 }
 
-                // Hent nye knapper etter at de er byttet ut
-                noButton = document.getElementById("no");
-                yesButton = document.getElementById("yesButton");
+                step++;
 
-                // Legg til event listeners igjen
-                yesButton.addEventListener("click", function () {
-                    document.body.innerHTML = `
-                            <h1>Jeg elsker deg, bebe ❤️</h1>
-                            <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
-                            <br><br>
-                            <button onclick="location.reload()">Start på nytt</button>
-                        `;
-                });
-
-                noButton.addEventListener("click", function () {
-                    document.body.innerHTML = `
-                            <h1>PRØV DEG HAHAHA</h1>
-                            <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true">
-                            <br><br>
-                            <button id="yesButton">Ja</button>
-                        `;
-
-                    document.getElementById("yesButton").addEventListener("click", function () {
+                if (step === 2) { // "Er du seriøs nå eller?" -> Snu knappene og bytt funksjonene
+                    noButton.onclick = function () {
                         document.body.innerHTML = `
                                 <h1>Jeg elsker deg, bebe ❤️</h1>
                                 <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
                                 <br><br>
-                                <button onclick="location.reload()">Start på nytt</button>
+                                <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
+                                    Start på nytt
+                                </button>
                             `;
-                    });
-                });
+                    };
 
-                step++;
+                    yesButton.onclick = function () {
+                        document.body.innerHTML = `
+                                <h1>PRØV DEG HAHAHA</h1>
+                                <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true" width="300">
+                                <br><br>
+                                <button id="yesButton" style="background-color:#ef476f; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
+                                    Ja
+                                </button>
+                            `;
+
+                        document.getElementById("yesButton").addEventListener("click", function () {
+                            document.body.innerHTML = `
+                                    <h1>Jeg elsker deg, bebe ❤️</h1>
+                                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
+                                    <br><br>
+                                    <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
+                                        Start på nytt
+                                    </button>
+                                `;
+                        });
+                    };
+                }
             }
         });
     </script>
