@@ -66,6 +66,7 @@
 
         #no {
             background-color: #ef476f;
+            position: relative;
         }
 
             #no:hover {
@@ -169,7 +170,7 @@
                                     <button id="yesButton" style="background-color:#ef476f; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
                                         Ja
                                     </button>
-                                    <button id="no" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer; position: absolute;">
+                                    <button id="no" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
                                         Nei
                                     </button>
                                 </div>
@@ -190,6 +191,7 @@
                         noBtn.addEventListener("mouseover", function () {
                             var x = Math.random() * (window.innerWidth - 150);
                             var y = Math.random() * (window.innerHeight - 150);
+                            noBtn.style.position = "absolute";
                             noBtn.style.left = x + "px";
                             noBtn.style.top = y + "px";
                         });
