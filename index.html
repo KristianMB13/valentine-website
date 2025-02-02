@@ -164,8 +164,8 @@
                 swapButtons: true,
                 yesColor: "#ef476f",
                 noColor: "#06d6a0",
-                yesAction: function () { goToStep(1); }, // **Går til "Er du seriøs nå eller?"**
-                noAction: function () { goToLovePage(); } // **Går til "Jeg elsker deg, bebe"**
+                yesAction: function () { goToStep(1); }, // **Ja går til "Er du seriøs nå eller?"**
+                noAction: function () { goToLovePage(); } // **Nei går til "Jeg elsker deg, bebe"**
             },
             {
                 text: "Er du seriøs nå eller?",
@@ -173,7 +173,8 @@
                 large: true,
                 swapButtons: true,
                 yesColor: "#ef476f",
-                noColor: "#06d6a0"
+                noColor: "#06d6a0",
+                yesAction: function () { goToPrankPage(); } // **Ja går nå riktig til "PRØV DEG HAHAHA"**
             },
             {
                 text: "PRØV DEG HAHAHA",
