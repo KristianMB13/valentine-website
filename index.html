@@ -20,6 +20,19 @@
         h1 {
             color: #ff477e;
             font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ff477e;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .small-text {
+            font-size: 10px;
+            color: #ff477e;
+            margin-top: 5px;
         }
 
         img {
@@ -99,8 +112,10 @@
 
         function goToPrankPage() {
             document.body.innerHTML = `
-                    <h1>PRØV DEG HAHAHA</h1>
-                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true" width="300">
+                    <h1>Okey, la oss prøve på nytt</h1>
+                    <h2>Vil du være min valentin bebe?</h2>
+                    <p class="small-text">PRØV DEG HAHAHA</p>
+                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/lp_image.jpg?raw=true" width="300"> <!-- 🔥 OPPDATERT BILDE HER -->
                     <br><br>
                     <div class="button-container">
                         <button id="yesButton" style="background-color:#06d6a0; color:#fff;">Ja</button>
@@ -163,8 +178,8 @@
                 swapButtons: true,
                 yesColor: "#ef476f",
                 noColor: "#06d6a0",
-                yesAction: function () { goToStep(1); }, // ✅ **Ja går nå til "Er du seriøs nå eller?"**
-                noAction: function () { goToLovePage(); } // ✅ **Nei går til "Jeg elsker deg, bebe"**
+                yesAction: function () { goToStep(1); },
+                noAction: function () { goToLovePage(); }
             },
             {
                 text: "Er du seriøs nå eller?",
@@ -173,14 +188,12 @@
                 swapButtons: true,
                 yesColor: "#ef476f",
                 noColor: "#06d6a0",
-                yesAction: function () { goToPrankPage(); }, // ✅ **Ja går nå til "PRØV DEG HAHAHA"**
-                noAction: function () { goToLovePage(); } // 🔥 **Nei går NÅ riktig til "Jeg elsker deg, bebe"!**
+                yesAction: function () { goToPrankPage(); },
+                noAction: function () { goToLovePage(); }
             }
         ];
 
-        // ✅ **Nå fungerer Ja-knappen på "Chiny, vil du være min Valentine?" riktig!**
         yesButton.onclick = function () { goToLovePage(); };
-
         noButton.onclick = function () { goToStep(0); };
     </script>
 </body>
