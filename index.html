@@ -27,10 +27,6 @@
             border-radius: 10px;
         }
 
-        .rotated-image {
-            transform: rotate(90deg); /* Roterer bildet som var sidelengs */
-        }
-
         .button-container {
             display: flex;
             justify-content: center;
@@ -80,8 +76,9 @@
     </div>
 
     <script>
-        let step = 0; // Antall ganger hun trykker nei
+        let step = 0; // Teller hvor mange ganger hun har trykket "Nei"
 
+        // Klikk på JA-knappen
         document.getElementById("yesButton").addEventListener("click", function () {
             document.body.innerHTML = `
                     <h1>Jeg elsker deg, bebe ❤️💖</h1>
@@ -90,9 +87,10 @@
         });
 
         var noButton = document.getElementById("no");
-        var yesButton = document.getElementById("yesButton");
         var valentineImage = document.getElementById("valentineImage");
+        var valentineText = document.getElementById("valentineText");
 
+        // Stegvis oppdatering av bildet og tekst
         var steps = [
             {
                 text: "Er du heeeeelt sikker?",
@@ -100,8 +98,7 @@
             },
             {
                 text: "Er du seriøs nå eller?",
-                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true",
-                rotate: true
+                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true"
             },
             {
                 text: "PRØV DEG HAHAHA",
@@ -111,22 +108,13 @@
 
         noButton.addEventListener("click", function () {
             if (step < steps.length) {
-                // Oppdater tekst og bilde
-                document.getElementById("valentineText").innerText = steps[step].text;
+                valentineText.innerText = steps[step].text;
                 valentineImage.src = steps[step].image;
-
-                // Roter bildet hvis det er markert for rotasjon
-                if (steps[step].rotate) {
-                    valentineImage.classList.add("rotated-image");
-                } else {
-                    valentineImage.classList.remove("rotated-image");
-                }
-
                 step++;
             }
 
             if (step === steps.length) {
-                // Siste steg: Nei-knappen begynner å bevege seg
+                // Når vi er på siste steg, starter nei-knappen å bevege seg
                 noButton.addEventListener("mouseover", function () {
                     var x = Math.random() * (window.innerWidth - 150);
                     var y = Math.random() * (window.innerHeight - 150);
