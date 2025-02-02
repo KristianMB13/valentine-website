@@ -27,9 +27,13 @@
             border-radius: 10px;
         }
 
-        #yesButton {
-            background-color: #06d6a0;
-            transition: transform 0.3s, background-color 0.3s;
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #yesButton, #no {
             width: 120px;
             font-size: 20px;
             height: 50px;
@@ -37,6 +41,12 @@
             border-radius: 10px;
             border: none;
             cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        #yesButton {
+            background-color: #06d6a0;
+            margin-right: 10px; /* Mellomrom mellom knappene */
         }
 
             #yesButton:hover {
@@ -45,25 +55,25 @@
             }
 
         #no {
-            position: absolute;
             background-color: #ef476f;
-            transition: transform 0.3s;
-            width: 120px;
-            font-size: 20px;
-            height: 50px;
-            color: #fff;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
+            margin-left: 10px;
         }
+
+            #no:hover {
+                transform: scale(1.1);
+                background-color: #d9435f;
+            }
     </style>
 </head>
 <body>
     <h1 id="valentineText">Chiny, vil du være min Valentine? ❤️</h1>
     <img id="valentineImage" src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0118.JPG?raw=true" alt="Søt Valentine-bilde">
     <br><br>
-    <button id="yesButton">Ja</button>
-    <button id="no">Nei</button>
+
+    <div class="button-container">
+        <button id="yesButton">Ja</button>
+        <button id="no">Nei</button>
+    </div>
 
     <script>
         document.getElementById("yesButton").addEventListener("click", function () {
@@ -91,7 +101,7 @@
         ];
 
         noButton.addEventListener("mouseover", function () {
-            var x = Math.random() * (window.innerWidth - 150); // Keep it on screen
+            var x = Math.random() * (window.innerWidth - 150); // Holder den på skjermen
             var y = Math.random() * (window.innerHeight - 150);
             noButton.style.position = "absolute";
             noButton.style.left = x + "px";
