@@ -88,76 +88,6 @@
     <script>
         let step = 0;
 
-        document.getElementById("yesButton").addEventListener("click", function () {
-            document.body.innerHTML = `
-                    <h1>Jeg elsker deg, bebe ❤️</h1>
-                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
-                    <br><br>
-                    <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
-                        Start på nytt
-                    </button>
-                `;
-        });
-
-        var noButton = document.getElementById("no");
-        var yesButton = document.getElementById("yesButton");
-        var valentineImage = document.getElementById("valentineImage");
-        var valentineText = document.getElementById("valentineText");
-        var buttonContainer = document.getElementById("buttonContainer");
-
-        var steps = [
-            {
-                text: "Er du heeeeelt sikker?",
-                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0119.JPG?raw=true",
-                large: false,
-                swapButtons: true,
-                yesColor: "#ef476f",
-                noColor: "#06d6a0",
-                yesAction: function () { goToStep(1); },  // Går til "Er du seriøs nå eller?"
-                noAction: function () { goToLovePage(); } // Går til "Jeg elsker deg, bebe"
-            },
-            {
-                text: "Er du seriøs nå eller?",
-                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true",
-                large: true,
-                swapButtons: true,
-                yesColor: "#ef476f",
-                noColor: "#06d6a0"
-            },
-            {
-                text: "PRØV DEG HAHAHA",
-                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true",
-                large: false,
-                swapButtons: false
-            }
-        ];
-
-        function goToStep(index) {
-            step = index;
-            valentineText.innerText = steps[step].text;
-            valentineImage.src = steps[step].image;
-
-            if (steps[step].large) {
-                valentineImage.classList.add("large");
-            } else {
-                valentineImage.classList.remove("large");
-            }
-
-            if (steps[step].swapButtons) {
-                buttonContainer.classList.add("swap-buttons");
-                yesButton.style.backgroundColor = steps[step].yesColor;
-                noButton.style.backgroundColor = steps[step].noColor;
-            } else {
-                buttonContainer.classList.remove("swap-buttons");
-                yesButton.style.backgroundColor = "#06d6a0";
-                noButton.style.backgroundColor = "#ef476f";
-            }
-
-            // Oppdater knappehandlinger
-            yesButton.onclick = steps[step].yesAction || function () { };
-            noButton.onclick = steps[step].noAction || function () { };
-        }
-
         function goToLovePage() {
             document.body.innerHTML = `
                     <h1>Jeg elsker deg, bebe ❤️</h1>
@@ -193,6 +123,65 @@
                 noBtn.style.top = y + "px";
             });
         }
+
+        function goToStep(index) {
+            step = index;
+            valentineText.innerText = steps[step].text;
+            valentineImage.src = steps[step].image;
+
+            if (steps[step].large) {
+                valentineImage.classList.add("large");
+            } else {
+                valentineImage.classList.remove("large");
+            }
+
+            if (steps[step].swapButtons) {
+                buttonContainer.classList.add("swap-buttons");
+                yesButton.style.backgroundColor = steps[step].yesColor;
+                noButton.style.backgroundColor = steps[step].noColor;
+            } else {
+                buttonContainer.classList.remove("swap-buttons");
+                yesButton.style.backgroundColor = "#06d6a0";
+                noButton.style.backgroundColor = "#ef476f";
+            }
+
+            // Oppdater knappehandlinger
+            yesButton.onclick = steps[step].yesAction || function () { };
+            noButton.onclick = steps[step].noAction || function () { };
+        }
+
+        var noButton = document.getElementById("no");
+        var yesButton = document.getElementById("yesButton");
+        var valentineImage = document.getElementById("valentineImage");
+        var valentineText = document.getElementById("valentineText");
+        var buttonContainer = document.getElementById("buttonContainer");
+
+        var steps = [
+            {
+                text: "Er du heeeeelt sikker?",
+                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0119.JPG?raw=true",
+                large: false,
+                swapButtons: true,
+                yesColor: "#ef476f",
+                noColor: "#06d6a0",
+                yesAction: function () { goToStep(1); }, // **Går til "Er du seriøs nå eller?"**
+                noAction: function () { goToLovePage(); } // **Går til "Jeg elsker deg, bebe"**
+            },
+            {
+                text: "Er du seriøs nå eller?",
+                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true",
+                large: true,
+                swapButtons: true,
+                yesColor: "#ef476f",
+                noColor: "#06d6a0"
+            },
+            {
+                text: "PRØV DEG HAHAHA",
+                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true",
+                large: false,
+                swapButtons: false
+            }
+        ];
 
         noButton.addEventListener("click", function () {
             goToStep(0);
