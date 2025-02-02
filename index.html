@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
+    <title>Chiny, vil du være min Valentine? 💖</title>
     <style>
         body {
             background: linear-gradient(to bottom, #f5cac3, #f7ede2);
@@ -14,6 +14,7 @@
             flex-direction: column;
             text-align: center;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
 
         h1 {
@@ -23,6 +24,7 @@
         img {
             max-width: 300px;
             height: auto;
+            border-radius: 10px;
         }
 
         #yesButton {
@@ -57,31 +59,39 @@
     </style>
 </head>
 <body>
-    <h1 id="valentineText">Will you be my Valentine? ❤️</h1>
-    <img id="valentineImage" src="https://pbs.twimg.com/media/Fyk7XMnaEAI3PsB.jpg" alt="Cute Valentine Image">
+    <h1 id="valentineText">Chiny, vil du være min Valentine? ❤️</h1>
+    <img id="valentineImage" src="https://i.pinimg.com/originals/3e/6d/75/3e6d75c34a78b60ee94e5d2e65b2444d.jpg" alt="Søt Valentine-bilde">
     <br><br>
-    <button id="yesButton">Yes</button>
-    <button id="no">No</button>
+    <button id="yesButton">Ja</button>
+    <button id="no">Nei</button>
 
     <script>
         document.getElementById("yesButton").addEventListener("click", function () {
-            document.body.innerHTML = "<h1>Yay! 🎉 I love you! ❤️</h1><img src='https://media.tenor.com/BP70qe8X0J8AAAAe/crycat-crying-cat.png' width='300'>";
+            document.body.innerHTML = "<h1>Jaaa! 🎉 Jeg elsker deg, Chiny! ❤️</h1><img src='https://i.giphy.com/media/jUwpNzg9IcyrK/giphy.gif' width='300'>";
         });
 
         var noButton = document.getElementById("no");
         var yesButton = document.getElementById("yesButton");
         var valentineImage = document.getElementById("valentineImage");
 
-        var noTexts = ["Are you sure?", "Please give me a chance, pookie!", "Pookie please 🥺", "Don't do this to me :(", "You're breaking my heart 💔", "I'm gonna cry 😭"];
+        var noTexts = [
+            "Er du sikker? 🥺",
+            "Gi meg en sjanse, Chiny! 💕",
+            "Plis ikke si nei 😭",
+            "Du knuser hjertet mitt 💔",
+            "Jeg begynner å gråte 😭",
+            "Tenk deg om én gang til! 🤔"
+        ];
+
         var imageSources = [
-            "https://pbs.twimg.com/media/Fyk7XMnaEAI3PsB.jpg",
+            "https://i.pinimg.com/originals/3e/6d/75/3e6d75c34a78b60ee94e5d2e65b2444d.jpg",
+            "https://i.pinimg.com/736x/1d/8d/62/1d8d62fd58e11056cb59f0f909fcd0e3.jpg",
             "https://media.tenor.com/BP70qe8X0J8AAAAe/crycat-crying-cat.png",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9e71v7IfFLLS_1CfY2it3an-6XH1uROjTfU5c88AwRL8aRkqAYDmoFrm9gpbUqwNameo&usqp=CAU",
-            "https://i.pinimg.com/736x/cb/d8/3b/cbd83b534a315e809a9da2b8cd3ac3bf.jpg"
+            "https://i.pinimg.com/736x/91/6b/4c/916b4cf3d0e8a28b4d88dff54f34f2e6.jpg"
         ];
 
         noButton.addEventListener("mouseover", function () {
-            var x = Math.random() * (window.innerWidth - 150); // Ensure it stays on screen
+            var x = Math.random() * (window.innerWidth - 150); // Keep it on screen
             var y = Math.random() * (window.innerHeight - 150);
             noButton.style.position = "absolute";
             noButton.style.left = x + "px";
