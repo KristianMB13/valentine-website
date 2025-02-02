@@ -76,6 +76,8 @@
     </div>
 
     <script>
+        let step = 0; // Antall ganger hun trykker nei
+
         document.getElementById("yesButton").addEventListener("click", function () {
             document.body.innerHTML = "<h1>Jeg elsker deg, bebe ❤️💖</h1><img src='https://i.giphy.com/media/jUwpNzg9IcyrK/giphy.gif' width='300'>";
         });
@@ -84,42 +86,41 @@
         var yesButton = document.getElementById("yesButton");
         var valentineImage = document.getElementById("valentineImage");
 
-        var noTexts = [
-            "Er du sikker? 🥺",
-            "Gi meg en sjanse, Chiny! 💕",
-            "Plis ikke si nei 😭",
-            "Du knuser hjertet mitt 💔",
-            "Jeg begynner å gråte 😭",
-            "Tenk deg om én gang til! 🤔"
+        var steps = [
+            {
+                text: "Er du heeeeelt sikker?",
+                image: "https://media.tenor.com/YTEa_IrG3s8AAAAd/cat-sus-cat.gif"
+            },
+            {
+                text: "Er du seriøs nå eller?",
+                image: "https://media.tenor.com/zCEFwDq9XQgAAAAC/crying-cat-cry.gif"
+            },
+            {
+                text: "PRØV DEG HAHAHA",
+                image: "https://media.tenor.com/3EzdxOG99tYAAAAC/trollface-laugh.gif"
+            }
         ];
-
-        var imageSources = [
-            "https://i.pinimg.com/originals/3e/6d/75/3e6d75c34a78b60ee94e5d2e65b2444d.jpg",
-            "https://i.pinimg.com/736x/1d/8d/62/1d8d62fd58e11056cb59f0f909fcd0e3.jpg",
-            "https://media.tenor.com/BP70qe8X0J8AAAAe/crycat-crying-cat.png",
-            "https://i.pinimg.com/736x/91/6b/4c/916b4cf3d0e8a28b4d88dff54f34f2e6.jpg"
-        ];
-
-        noButton.addEventListener("mouseover", function () {
-            var x = Math.random() * (window.innerWidth - 150);
-            var y = Math.random() * (window.innerHeight - 150);
-            noButton.style.position = "absolute";
-            noButton.style.left = x + "px";
-            noButton.style.top = y + "px";
-        });
 
         noButton.addEventListener("click", function () {
-            var randomIndex = Math.floor(Math.random() * noTexts.length);
-            noButton.innerText = noTexts[randomIndex];
+            if (step < steps.length) {
+                // Oppdater tekst og bilde
+                document.getElementById("valentineText").innerText = steps[step].text;
+                valentineImage.src = steps[step].image;
+                step++;
+            }
 
-            var randomImageIndex = Math.floor(Math.random() * imageSources.length);
-            valentineImage.src = imageSources[randomImageIndex];
-
-            var currentWidth = yesButton.offsetWidth;
-            var currentHeight = yesButton.offsetHeight;
-            yesButton.style.width = (currentWidth + 20) + "px";
-            yesButton.style.height = (currentHeight + 10) + "px";
+            if (step === steps.length) {
+                // Siste steg: Nei-knappen begynner å bevege seg
+                noButton.addEventListener("mouseover", function () {
+                    var x = Math.random() * (window.innerWidth - 150);
+                    var y = Math.random() * (window.innerHeight - 150);
+                    noButton.style.position = "absolute";
+                    noButton.style.left = x + "px";
+                    noButton.style.top = y + "px";
+                });
+            }
         });
+
     </script>
 </body>
 </html>
