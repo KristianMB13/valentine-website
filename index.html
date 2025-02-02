@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f5cac3, #f7ede2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #ff477e;
+        }
+
+        img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        #yesButton {
+            background-color: #06d6a0;
+            transition: transform 0.3s, background-color 0.3s;
+            width: 120px;
+            font-size: 20px;
+            height: 50px;
+            color: #fff;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+            #yesButton:hover {
+                transform: scale(1.1);
+                background-color: #05c28c;
+            }
+
+        #no {
+            position: absolute;
+            background-color: #ef476f;
+            transition: transform 0.3s;
+            width: 120px;
+            font-size: 20px;
+            height: 50px;
+            color: #fff;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="valentineText">Will you be my Valentine? ❤️</h1>
+    <img id="valentineImage" src="https://pbs.twimg.com/media/Fyk7XMnaEAI3PsB.jpg" alt="Cute Valentine Image">
+    <br><br>
+    <button id="yesButton">Yes</button>
+    <button id="no">No</button>
+
+    <script>
+        document.getElementById("yesButton").addEventListener("click", function () {
+            document.body.innerHTML = "<h1>Yay! 🎉 I love you! ❤️</h1><img src='https://media.tenor.com/BP70qe8X0J8AAAAe/crycat-crying-cat.png' width='300'>";
+        });
+
+        var noButton = document.getElementById("no");
+        var yesButton = document.getElementById("yesButton");
+        var valentineImage = document.getElementById("valentineImage");
+
+        var noTexts = ["Are you sure?", "Please give me a chance, pookie!", "Pookie please 🥺", "Don't do this to me :(", "You're breaking my heart 💔", "I'm gonna cry 😭"];
+        var imageSources = [
+            "https://pbs.twimg.com/media/Fyk7XMnaEAI3PsB.jpg",
+            "https://media.tenor.com/BP70qe8X0J8AAAAe/crycat-crying-cat.png",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9e71v7IfFLLS_1CfY2it3an-6XH1uROjTfU5c88AwRL8aRkqAYDmoFrm9gpbUqwNameo&usqp=CAU",
+            "https://i.pinimg.com/736x/cb/d8/3b/cbd83b534a315e809a9da2b8cd3ac3bf.jpg"
+        ];
+
+        noButton.addEventListener("mouseover", function () {
+            var x = Math.random() * (window.innerWidth - 150); // Ensure it stays on screen
+            var y = Math.random() * (window.innerHeight - 150);
+            noButton.style.position = "absolute";
+            noButton.style.left = x + "px";
+            noButton.style.top = y + "px";
+        });
+
+        noButton.addEventListener("click", function () {
+            var randomIndex = Math.floor(Math.random() * noTexts.length);
+            noButton.innerText = noTexts[randomIndex];
+
+            var randomImageIndex = Math.floor(Math.random() * imageSources.length);
+            valentineImage.src = imageSources[randomImageIndex];
+
+            var currentWidth = yesButton.offsetWidth;
+            var currentHeight = yesButton.offsetHeight;
+            yesButton.style.width = (currentWidth + 20) + "px";
+            yesButton.style.height = (currentHeight + 10) + "px";
+        });
+    </script>
+</body>
+</html>
