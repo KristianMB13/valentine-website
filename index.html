@@ -177,7 +177,8 @@
             }
         ];
 
-        yesButton.addEventListener("click", function () {
+        // **Fikset så kun denne knappen påvirker første siden!**
+        document.getElementById("yesButton").addEventListener("click", function () {
             goToLovePage();
         });
 
