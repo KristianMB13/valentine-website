@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!DO<!DOCTYPE html>
 <html lang="no">
 <head>
     <meta charset="UTF-8">
@@ -42,18 +42,19 @@
             transition: width 0.3s ease-in-out;
         }
 
-        .prank-image {
-            width: 180px; /* 🔥 Bildet på "Okey, la oss prøve på nytt" er nå mindre */
-            max-width: 50%;
-            height: auto;
-            margin-top: 15px;
+        .large {
+            width: 500px;
         }
 
         .button-container {
             display: flex;
             justify-content: center;
-            margin-top: 25px;
+            margin-top: 20px;
             gap: 20px;
+        }
+
+        .swap-buttons {
+            flex-direction: row-reverse;
         }
 
         #yesButton, #no {
@@ -71,20 +72,20 @@
             background-color: #06d6a0;
         }
 
-            #yesButton:hover {
-                transform: scale(1.1);
-                background-color: #05c28c;
-            }
+        #yesButton:hover {
+            transform: scale(1.1);
+            background-color: #05c28c;
+        }
 
         #no {
             background-color: #ef476f;
             position: relative;
         }
 
-            #no:hover {
-                transform: scale(1.1);
-                background-color: #d9435f;
-            }
+        #no:hover {
+            transform: scale(1.1);
+            background-color: #d9435f;
+        }
     </style>
 </head>
 <body>
@@ -100,27 +101,26 @@
     <script>
         function goToLovePage() {
             document.body.innerHTML = `
-                    <h1>Jeg elsker deg, bebe ❤️</h1>
-                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
-                    <br><br>
-                    <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
-                        Start på nytt
-                    </button>
-                `;
+                <h1>Jeg elsker deg, bebe ❤️</h1>
+                <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
+                <br><br>
+                <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
+                    Start på nytt
+                </button>
+            `;
         }
 
         function goToPrankPage() {
             document.body.innerHTML = `
-                    <h1>Okey, la oss prøve på nytt</h1>
-                    <h2>Vil du være min valentin bebe?</h2>
-                    <p class="small-text">PRØV DEG HAHAHA</p>
-                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/lp_image.jpg?raw=true" class="prank-image">
-                    <br><br>
-                    <div class="button-container">
-                        <button id="yesButton" style="background-color:#06d6a0; color:#fff;">Ja</button>
-                        <button id="no" style="background-color:#ef476f; color:#fff;">Nei</button>
-                    </div>
-                `;
+                <h1>Okey, la oss prøve på nytt. Vil du være min valentin bebe?</h1>
+                <p class="small-text">PRØV DEG HAHAHA</p>
+                <img src="https://github.com/KristianMB13/valentine-website/blob/main/lp_image.jpg?raw=true" width="250" style="margin-top: 10px; max-width: 80%; height: auto;"> <!-- 🔥 Redusert bilde -->
+                <br><br>
+                <div class="button-container" style="margin-top: 20px;">
+                    <button id="yesButton" style="background-color:#06d6a0; color:#fff;">Ja</button>
+                    <button id="no" style="background-color:#ef476f; color:#fff;">Nei</button>
+                </div>
+            `;
 
             document.getElementById("yesButton").addEventListener("click", function () {
                 goToLovePage();
