@@ -50,9 +50,9 @@
             transition: transform 0.3s, background-color 0.3s;
         }
 
-        /* Standard farger */
+        /* Standard knappestiler */
         #yesButton {
-            background-color: #06d6a0; /* Grønn for Ja */
+            background-color: #06d6a0; /* Grønn */
             margin-right: 10px;
         }
 
@@ -62,7 +62,7 @@
             }
 
         #no {
-            background-color: #ef476f; /* Rød for Nei */
+            background-color: #ef476f; /* Rød */
             margin-left: 10px;
         }
 
@@ -71,16 +71,18 @@
                 background-color: #d9435f;
             }
 
-        /* Farger og plassering for "Er du seriøs nå eller?"-siden */
-        .switch-buttons #yesButton {
-            background-color: #ef476f; /* Rød */
-            margin-left: 10px;
+        /* Endrer knappene på "Er du seriøs nå eller?" siden */
+        .switch-buttons {
+            flex-direction: row-reverse;
         }
 
-        .switch-buttons #no {
-            background-color: #06d6a0; /* Grønn */
-            margin-right: 10px;
-        }
+            .switch-buttons #yesButton {
+                background-color: #ef476f; /* Ja blir rød */
+            }
+
+            .switch-buttons #no {
+                background-color: #06d6a0; /* Nei blir grønn */
+            }
     </style>
 </head>
 <body>
@@ -101,6 +103,8 @@
             document.body.innerHTML = `
                     <h1>Jeg elsker deg, bebe ❤️💖</h1>
                     <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
+                    <br><br>
+                    <button onclick="location.reload()" style="background-color: #06d6a0; color: white; font-size: 20px; border-radius: 10px; padding: 10px; border: none; cursor: pointer;">Start på nytt</button>
                 `;
         });
 
@@ -122,7 +126,7 @@
                 text: "Er du seriøs nå eller? helt sikker?",
                 image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true",
                 large: true,
-                switchButtons: true // Bytter farge og plassering
+                switchButtons: true // Bytter plass og farge på knappene
             },
             {
                 text: "PRØV DEG HAHAHA",
@@ -147,33 +151,35 @@
                 // Bytter farge og plassering på knappene på "Er du seriøs nå eller?"-siden
                 if (steps[step].switchButtons) {
                     buttonContainer.classList.add("switch-buttons");
-                    noButton.addEventListener("click", function () {
+                    noButton.onclick = function () {
                         document.body.innerHTML = `
                                 <h1>Jeg elsker deg, bebe ❤️💖</h1>
                                 <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
+                                <br><br>
+                                <button onclick="location.reload()" style="background-color: #06d6a0; color: white; font-size: 20px; border-radius: 10px; padding: 10px; border: none; cursor: pointer;">Start på nytt</button>
                             `;
-                    });
+                    };
 
-                    yesButton.addEventListener("click", function () {
+                    yesButton.onclick = function () {
                         document.body.innerHTML = `
                                 <h1>PRØV DEG HAHAHA</h1>
                                 <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true" width="300">
+                                <br><br>
+                                <button id="no" style="background-color: #06d6a0; color: white; font-size: 20px; border-radius: 10px; padding: 10px; border: none; cursor: pointer; position: absolute;">Nei</button>
+                                <button onclick="location.reload()" style="background-color: #ef476f; color: white; font-size: 20px; border-radius: 10px; padding: 10px; border: none; cursor: pointer;">Start på nytt</button>
                             `;
-                    });
+
+                        let moveNoButton = document.getElementById("no");
+                        moveNoButton.addEventListener("mouseover", function () {
+                            var x = Math.random() * (window.innerWidth - 150);
+                            var y = Math.random() * (window.innerHeight - 150);
+                            moveNoButton.style.left = x + "px";
+                            moveNoButton.style.top = y + "px";
+                        });
+                    };
                 }
 
                 step++;
-            }
-
-            if (step === steps.length) {
-                // Når vi er på siste steg, starter nei-knappen å bevege seg
-                noButton.addEventListener("mouseover", function () {
-                    var x = Math.random() * (window.innerWidth - 150);
-                    var y = Math.random() * (window.innerHeight - 150);
-                    noButton.style.position = "absolute";
-                    noButton.style.left = x + "px";
-                    noButton.style.top = y + "px";
-                });
             }
         });
 
