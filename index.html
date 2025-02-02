@@ -163,7 +163,7 @@
                 swapButtons: true,
                 yesColor: "#ef476f",
                 noColor: "#06d6a0",
-                yesAction: function () { goToStep(1); }, // 🔥 **FIKSET – Ja går NÅ til "Er du seriøs nå eller?"**
+                yesAction: function () { goToStep(1); }, // ✅ **Fikset – Ja går nå riktig til "Er du seriøs nå eller?"**
                 noAction: function () { goToLovePage(); } // ✅ **Nei går til "Jeg elsker deg, bebe"**
             },
             {
@@ -173,18 +173,14 @@
                 swapButtons: true,
                 yesColor: "#ef476f",
                 noColor: "#06d6a0",
-                yesAction: function () { goToPrankPage(); } // ✅ **Ja går nå til "PRØV DEG HAHAHA" (riktig)**
+                yesAction: function () { goToPrankPage(); } // ✅ **Ja går nå til "PRØV DEG HAHAHA"**
             }
         ];
 
-        // ✅ **Nå fungerer Ja-knappen på "Chiny, vil du være min Valentine?"**
-        document.getElementById("yesButton").addEventListener("click", function () {
-            goToLovePage();
-        });
+        // **✅ Nå fungerer Ja-knappen på "Chiny, vil du være min Valentine?" riktig!**
+        yesButton.onclick = function () { goToLovePage(); };
 
-        noButton.addEventListener("click", function () {
-            goToStep(0);
-        });
+        noButton.onclick = function () { goToStep(0); };
     </script>
 </body>
 </html>
