@@ -50,8 +50,9 @@
             transition: transform 0.3s, background-color 0.3s;
         }
 
+        /* Standard farger */
         #yesButton {
-            background-color: #06d6a0;
+            background-color: #06d6a0; /* Grønn for Ja */
             margin-right: 10px;
         }
 
@@ -61,7 +62,7 @@
             }
 
         #no {
-            background-color: #ef476f;
+            background-color: #ef476f; /* Rød for Nei */
             margin-left: 10px;
         }
 
@@ -69,6 +70,17 @@
                 transform: scale(1.1);
                 background-color: #d9435f;
             }
+
+        /* Farger og plassering for "Er du seriøs nå eller?"-siden */
+        .switch-buttons #yesButton {
+            background-color: #ef476f; /* Rød */
+            margin-left: 10px;
+        }
+
+        .switch-buttons #no {
+            background-color: #06d6a0; /* Grønn */
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -76,7 +88,7 @@
     <img id="valentineImage" src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0118.JPG?raw=true" alt="Søt Valentine-bilde">
     <br><br>
 
-    <div class="button-container">
+    <div id="buttonContainer" class="button-container">
         <button id="yesButton">Ja</button>
         <button id="no">Nei</button>
     </div>
@@ -87,31 +99,36 @@
         // Klikk på JA-knappen
         document.getElementById("yesButton").addEventListener("click", function () {
             document.body.innerHTML = `
-                        <h1>Jeg elsker deg, bebe ❤️</h1>
-                        <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
-                    `;
+                    <h1>Jeg elsker deg, bebe ❤️💖</h1>
+                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
+                `;
         });
 
         var noButton = document.getElementById("no");
+        var yesButton = document.getElementById("yesButton");
         var valentineImage = document.getElementById("valentineImage");
         var valentineText = document.getElementById("valentineText");
+        var buttonContainer = document.getElementById("buttonContainer");
 
         // Stegvis oppdatering av bildet og tekst
         var steps = [
             {
                 text: "Er du heeeeelt sikker?",
                 image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0119.JPG?raw=true",
-                large: false
+                large: false,
+                switchButtons: false
             },
             {
                 text: "Er du seriøs nå eller? helt sikker?",
                 image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true",
-                large: true
+                large: true,
+                switchButtons: true // Bytter farge og plassering
             },
             {
                 text: "PRØV DEG HAHAHA",
                 image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true",
-                large: false
+                large: false,
+                switchButtons: false
             }
         ];
 
@@ -125,6 +142,24 @@
                     valentineImage.classList.add("large");
                 } else {
                     valentineImage.classList.remove("large");
+                }
+
+                // Bytter farge og plassering på knappene på "Er du seriøs nå eller?"-siden
+                if (steps[step].switchButtons) {
+                    buttonContainer.classList.add("switch-buttons");
+                    noButton.addEventListener("click", function () {
+                        document.body.innerHTML = `
+                                <h1>Jeg elsker deg, bebe ❤️💖</h1>
+                                <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
+                            `;
+                    });
+
+                    yesButton.addEventListener("click", function () {
+                        document.body.innerHTML = `
+                                <h1>PRØV DEG HAHAHA</h1>
+                                <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true" width="300">
+                            `;
+                    });
                 }
 
                 step++;
