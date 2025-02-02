@@ -19,12 +19,17 @@
 
         h1 {
             color: #ff477e;
+            font-size: 28px;
         }
 
         img {
-            max-width: 300px;
+            max-width: 400px; /* Større bilder */
             height: auto;
             border-radius: 10px;
+        }
+
+        .landscape {
+            max-width: 500px; /* Større for liggende bilder */
         }
 
         .button-container {
@@ -82,7 +87,7 @@
         document.getElementById("yesButton").addEventListener("click", function () {
             document.body.innerHTML = `
                     <h1>Jeg elsker deg, bebe ❤️💖</h1>
-                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="300">
+                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
                 `;
         });
 
@@ -94,15 +99,18 @@
         var steps = [
             {
                 text: "Er du heeeeelt sikker?",
-                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0119.JPG?raw=true"
+                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0119.JPG?raw=true",
+                isLandscape: false
             },
             {
                 text: "Er du seriøs nå eller?",
-                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true"
+                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true",
+                isLandscape: true
             },
             {
                 text: "PRØV DEG HAHAHA",
-                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true"
+                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true",
+                isLandscape: false
             }
         ];
 
@@ -110,6 +118,14 @@
             if (step < steps.length) {
                 valentineText.innerText = steps[step].text;
                 valentineImage.src = steps[step].image;
+
+                // Sjekk om bildet er liggende
+                if (steps[step].isLandscape) {
+                    valentineImage.classList.add("landscape");
+                } else {
+                    valentineImage.classList.remove("landscape");
+                }
+
                 step++;
             }
 
@@ -124,6 +140,7 @@
                 });
             }
         });
+
     </script>
 </body>
 </html>
