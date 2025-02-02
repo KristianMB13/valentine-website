@@ -1,4 +1,4 @@
-﻿<!DO<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="no">
 <head>
     <meta charset="UTF-8">
@@ -72,20 +72,20 @@
             background-color: #06d6a0;
         }
 
-        #yesButton:hover {
-            transform: scale(1.1);
-            background-color: #05c28c;
-        }
+            #yesButton:hover {
+                transform: scale(1.1);
+                background-color: #05c28c;
+            }
 
         #no {
             background-color: #ef476f;
             position: relative;
         }
 
-        #no:hover {
-            transform: scale(1.1);
-            background-color: #d9435f;
-        }
+            #no:hover {
+                transform: scale(1.1);
+                background-color: #d9435f;
+            }
     </style>
 </head>
 <body>
@@ -99,28 +99,43 @@
     </div>
 
     <script>
+        // 📌 **Forhåndslaster bildene**
+        const imageUrls = [
+            "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0119.JPG?raw=true",
+            "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true",
+            "https://github.com/KristianMB13/valentine-website/blob/main/lp_image.jpg?raw=true",
+            "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true"
+        ];
+
+        let preloadedImages = [];
+        imageUrls.forEach(url => {
+            let img = new Image();
+            img.src = url;
+            preloadedImages.push(img);
+        });
+
         function goToLovePage() {
             document.body.innerHTML = `
-                <h1>Jeg elsker deg, bebe ❤️</h1>
-                <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
-                <br><br>
-                <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
-                    Start på nytt
-                </button>
-            `;
+                    <h1>Jeg elsker deg, bebe ❤️</h1>
+                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
+                    <br><br>
+                    <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
+                        Start på nytt
+                    </button>
+                `;
         }
 
         function goToPrankPage() {
             document.body.innerHTML = `
-        <h1>Okey, la oss prøve på nytt. Vil du være min valentin bebe?</h1>
-        <p class="small-text">PRØV DEG HAHAHA</p>
-        <img src="https://github.com/KristianMB13/valentine-website/blob/main/lp_image.jpg?raw=true" style="width: 180px; height: auto; display: block; margin: 10px auto;"> <!-- 📏 Midt i mellom størrelsen -->
-        <br><br>
-        <div class="button-container" style="margin-top: 20px;">
-            <button id="yesButton" style="background-color:#06d6a0; color:#fff;">Ja</button>
-            <button id="no" style="background-color:#ef476f; color:#fff;">Nei</button>
-        </div>
-    `;
+                    <h1>Okey, la oss prøve på nytt. Vil du være min valentin bebe?</h1>
+                    <p class="small-text">PRØV DEG HAHAHA</p>
+                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/lp_image.jpg?raw=true" style="width: 180px; height: auto; display: block; margin: 10px auto;"> <!-- 📏 Midt i mellom størrelsen -->
+                    <br><br>
+                    <div class="button-container" style="margin-top: 20px;">
+                        <button id="yesButton" style="background-color:#06d6a0; color:#fff;">Ja</button>
+                        <button id="no" style="background-color:#ef476f; color:#fff;">Nei</button>
+                    </div>
+                `;
 
             document.getElementById("yesButton").addEventListener("click", function () {
                 goToLovePage();
@@ -135,9 +150,6 @@
                 noBtn.style.top = y + "px";
             });
         }
-
-
-
 
         function goToStep(index) {
             step = index;
