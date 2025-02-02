@@ -110,13 +110,19 @@
                 text: "Er du heeeeelt sikker?",
                 image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0119.JPG?raw=true",
                 large: false,
-                swapButtons: false
+                swapButtons: true,
+                yesColor: "#ef476f",
+                noColor: "#06d6a0",
+                yesAction: function () { goToStep(1); },  // Går til "Er du seriøs nå eller?"
+                noAction: function () { goToLovePage(); } // Går til "Jeg elsker deg, bebe"
             },
             {
                 text: "Er du seriøs nå eller?",
                 image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0206.JPG?raw=true",
                 large: true,
-                swapButtons: true
+                swapButtons: true,
+                yesColor: "#ef476f",
+                noColor: "#06d6a0"
             },
             {
                 text: "PRØV DEG HAHAHA",
@@ -126,78 +132,70 @@
             }
         ];
 
-        noButton.addEventListener("click", function () {
-            if (step < steps.length) {
-                valentineText.innerText = steps[step].text;
-                valentineImage.src = steps[step].image;
+        function goToStep(index) {
+            step = index;
+            valentineText.innerText = steps[step].text;
+            valentineImage.src = steps[step].image;
 
-                if (steps[step].large) {
-                    valentineImage.classList.add("large");
-                } else {
-                    valentineImage.classList.remove("large");
-                }
-
-                if (steps[step].swapButtons) {
-                    buttonContainer.classList.add("swap-buttons");
-                    yesButton.style.backgroundColor = "#ef476f";
-                    noButton.style.backgroundColor = "#06d6a0";
-                } else {
-                    buttonContainer.classList.remove("swap-buttons");
-                    yesButton.style.backgroundColor = "#06d6a0";
-                    noButton.style.backgroundColor = "#ef476f";
-                }
-
-                step++;
-
-                if (step === 2) {
-                    noButton.onclick = function () {
-                        document.body.innerHTML = `
-                                <h1>Jeg elsker deg, bebe ❤️</h1>
-                                <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
-                                <br><br>
-                                <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
-                                    Start på nytt
-                                </button>
-                            `;
-                    };
-
-                    yesButton.onclick = function () {
-                        document.body.innerHTML = `
-                                <h1>PRØV DEG HAHAHA</h1>
-                                <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true" width="300">
-                                <br><br>
-                                <div class="button-container">
-                                    <button id="yesButton" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
-                                        Ja
-                                    </button>
-                                    <button id="no" style="background-color:#ef476f; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
-                                        Nei
-                                    </button>
-                                </div>
-                            `;
-
-                        document.getElementById("yesButton").addEventListener("click", function () {
-                            document.body.innerHTML = `
-                                    <h1>Jeg elsker deg, bebe ❤️</h1>
-                                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
-                                    <br><br>
-                                    <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
-                                        Start på nytt
-                                    </button>
-                                `;
-                        });
-
-                        var noBtn = document.getElementById("no");
-                        noBtn.addEventListener("mouseover", function () {
-                            var x = Math.random() * (window.innerWidth - 150);
-                            var y = Math.random() * (window.innerHeight - 150);
-                            noBtn.style.position = "absolute";
-                            noBtn.style.left = x + "px";
-                            noBtn.style.top = y + "px";
-                        });
-                    };
-                }
+            if (steps[step].large) {
+                valentineImage.classList.add("large");
+            } else {
+                valentineImage.classList.remove("large");
             }
+
+            if (steps[step].swapButtons) {
+                buttonContainer.classList.add("swap-buttons");
+                yesButton.style.backgroundColor = steps[step].yesColor;
+                noButton.style.backgroundColor = steps[step].noColor;
+            } else {
+                buttonContainer.classList.remove("swap-buttons");
+                yesButton.style.backgroundColor = "#06d6a0";
+                noButton.style.backgroundColor = "#ef476f";
+            }
+
+            // Oppdater knappehandlinger
+            yesButton.onclick = steps[step].yesAction || function () { };
+            noButton.onclick = steps[step].noAction || function () { };
+        }
+
+        function goToLovePage() {
+            document.body.innerHTML = `
+                    <h1>Jeg elsker deg, bebe ❤️</h1>
+                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0120.JPG?raw=true" width="400">
+                    <br><br>
+                    <button onclick="location.reload()" style="background-color:#06d6a0; color:#fff; border:none; padding:10px 20px; border-radius:10px; font-size:20px; cursor:pointer;">
+                        Start på nytt
+                    </button>
+                `;
+        }
+
+        function goToPrankPage() {
+            document.body.innerHTML = `
+                    <h1>PRØV DEG HAHAHA</h1>
+                    <img src="https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true" width="300">
+                    <br><br>
+                    <div class="button-container">
+                        <button id="yesButton" style="background-color:#06d6a0; color:#fff;">Ja</button>
+                        <button id="no" style="background-color:#ef476f; color:#fff;">Nei</button>
+                    </div>
+                `;
+
+            document.getElementById("yesButton").addEventListener("click", function () {
+                goToLovePage();
+            });
+
+            var noBtn = document.getElementById("no");
+            noBtn.addEventListener("mouseover", function () {
+                var x = Math.random() * (window.innerWidth - 150);
+                var y = Math.random() * (window.innerHeight - 150);
+                noBtn.style.position = "absolute";
+                noBtn.style.left = x + "px";
+                noBtn.style.top = y + "px";
+            });
+        }
+
+        noButton.addEventListener("click", function () {
+            goToStep(0);
         });
     </script>
 </body>
