@@ -86,8 +86,6 @@
     </div>
 
     <script>
-        let step = 0;
-
         function goToLovePage() {
             document.body.innerHTML = `
                     <h1>Jeg elsker deg, bebe ❤️</h1>
@@ -145,10 +143,11 @@
                 noButton.style.backgroundColor = "#ef476f";
             }
 
-            // Oppdater knappehandlinger
             yesButton.onclick = steps[step].yesAction || function () { };
             noButton.onclick = steps[step].noAction || function () { };
         }
+
+        let step = 0;
 
         var noButton = document.getElementById("no");
         var yesButton = document.getElementById("yesButton");
@@ -175,14 +174,12 @@
                 yesColor: "#ef476f",
                 noColor: "#06d6a0",
                 yesAction: function () { goToPrankPage(); } // **Ja går nå riktig til "PRØV DEG HAHAHA"**
-            },
-            {
-                text: "PRØV DEG HAHAHA",
-                image: "https://github.com/KristianMB13/valentine-website/blob/main/IMG_0920.jpg?raw=true",
-                large: false,
-                swapButtons: false
             }
         ];
+
+        yesButton.addEventListener("click", function () {
+            goToLovePage();
+        });
 
         noButton.addEventListener("click", function () {
             goToStep(0);
